@@ -1,0 +1,155 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#F7F0DE;
+
+    color:#2D1B12;
+
+    font-family:'Lora',serif;
+
+}
+
+.container{
+
+    width:min(900px,90%);
+
+    margin:60px auto;
+
+}
+
+h1{
+
+    font-family:'Cinzel',serif;
+
+    color:#6D0F0F;
+
+    font-size:4rem;
+
+    text-align:center;
+
+}
+
+h2{
+
+    text-align:center;
+
+    margin-top:12px;
+
+    font-weight:500;
+
+}
+
+.quote{
+
+    text-align:center;
+
+    margin:30px 0 50px;
+
+    font-style:italic;
+
+}
+
+.quest-box{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.quest-box h3{
+
+    margin-bottom:20px;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    border:1px solid #D9C9A3;
+
+    font-size:1rem;
+
+}
+
+button{
+
+    margin-top:18px;
+
+    background:#6D0F0F;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 28px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#D4AF37;
+
+    color:#2D1B12;
+
+}
+
+.quests{
+
+    margin-top:50px;
+
+}
+
+.task-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:white;
+
+    margin-top:18px;
+
+    padding:20px;
+
+    border-radius:14px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.complete{
+
+    background:#2E7D32;
+
+}
+
+.delete{
+
+    background:#B22222;
+
+}
