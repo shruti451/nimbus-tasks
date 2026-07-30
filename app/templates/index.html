@@ -26,16 +26,21 @@ NimbusTasks
 
         <h2>📜 Add New Quest</h2>
 
+<form action="/" method="post">
+
         <input
             type="text"
+            name="quest"
             placeholder="Enter your magical quest..."
+            required
         >
 
-        <button>
+        <button type="submit">
 
             🪄 Cast Spell
 
         </button>
+    </form>
 
     </section>
 
@@ -43,9 +48,33 @@ NimbusTasks
 
     <h2>📖 Quest Board</h2>
 
-    <div class="empty-board">
+    {% if tasks %}
 
-        <h3>No magical quests yet</h3>
+    {% for task in tasks %}
+
+        <div class="quest-item">
+
+            <div class="quest-info">
+
+                <span class="quest-icon">📜</span>
+
+                <span class="quest-text">
+                    {{ task.quest }}
+                </span>
+            </div>
+            
+            <a class="delete-btn" href="/delete/{{ task.id }}">🗑️
+
+            </a>
+       
+        </div>
+        
+        {% endfor %}
+        {% else %}
+
+<div class="empty-board">
+
+        <h3>✨ No magical quests yet</h3>
 
         <p>
             Cast your first spell to begin
@@ -54,7 +83,9 @@ NimbusTasks
 
     </div>
 
-</section>
+{% endif %}
+
+    </section>
 
 </div>
 

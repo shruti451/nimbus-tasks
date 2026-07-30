@@ -232,3 +232,59 @@ h1{
     }
 
 }
+
+/* ==========================
+   Quest Board
+========================== */
+
+.quest-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #fffdf8;
+    border: 1px solid #e6d5b8;
+    border-left: 6px solid #7b1010;
+
+    padding: 16px 20px;
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+    transition: all 0.25s ease;
+}
+
+.quest-item:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+.quest-icon {
+    font-size: 1.5rem;
+}
+
+.quest-text {
+    font-size: 1.1rem;
+    color: #4a3426;
+
+    font-family: "Lora", serif;
+}
+
+.quest-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.delete-btn {
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: transform 0.2s ease;
+}
+
+.delete-btn:hover {
+    transform: scale(1.2);
+}
