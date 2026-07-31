@@ -14,23 +14,40 @@ The objective is to understand how real-world applications evolve over time.
 
 ## 🚀 Current Version
 
-Version 1
+### Version 1 (Completed)
 
 - Python Flask application
-- Docker
-- Google Cloud Platform (Compute Engine)
-- Git & GitHub
+- Harry Potter inspired UI
+- Create, Read, Update & Delete (CRUD)
+- Git Version Control
+- GitHub Repository
 
+### Next
+
+- Docker
+- Docker Compose
+- MySQL
+- Redis
+- Jenkins
+- Kubernetes
+- GCP
 ---
 
-## 🛣️ Roadmap
+Version 1 ✅ Flask CRUD Application
 
-- [ ] Version 1 — Containerize application using Docker
-- [ ] Version 2 — Deploy with Kubernetes
-- [ ] Version 3 — Provision infrastructure using Terraform
-- [ ] Version 4 — CI/CD Pipeline
-- [ ] Version 5 — Deploy on AWS
-- [ ] Version 6 — Monitoring & Logging
+Version 2 🐳 Docker
+
+Version 3 🐳 Docker Compose
+
+Version 4 🗄️ MySQL & Redis
+
+Version 5 🔄 Jenkins CI/CD
+
+Version 6 ☸️ Kubernetes
+
+Version 7 ☁️ Google Cloud Platform Deployment
+
+Version 8 ☁️ AWS Migration
 
 ---
 
@@ -56,13 +73,32 @@ NimbusTasks
 
 - Python
 - Flask
-- Docker
-- Linux
+- HTML
+- CSS
+- Jinja2
 - Git
 - GitHub
-- Google Cloud Platform
 
 ---
+
+## ✨ Features
+
+- Add quests
+- Complete/Undo quests
+- Delete quests
+- Harry Potter inspired interface
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+
+<img src="images/home.png" width="900">
+
+### Quest Board
+
+<img src="images/quest-board.png" width="900">
 
 ## 📌 Status
 
