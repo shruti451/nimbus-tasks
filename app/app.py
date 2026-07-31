@@ -34,5 +34,14 @@ def delete(id):
 
     return redirect("/")
 
+@app.route("/complete/<int:id>")
+def complete(id):
+    for task in tasks:
+        if task["id"] == id:
+            task["completed"] = not task["completed"]
+            break
+
+    return redirect("/")
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=False)

@@ -279,12 +279,26 @@ h1{
     gap: 20px;
 }
 
-.delete-btn {
-    text-decoration: none;
-    font-size: 1.3rem;
-    transition: transform 0.2s ease;
+.quest-actions{
+    display:flex;
+    align-items:center;
+    gap:16px;
 }
 
+.completed{
+    text-decoration:line-through;
+    opacity:.6;
+}
+
+.complete-btn,
+.delete-btn{
+    text-decoration:none;
+    font-size:1.3rem;
+    transition:transform .2s ease;
+}
+
+.complete-btn:hover,
 .delete-btn:hover {
     transform: scale(1.2);
 }
+

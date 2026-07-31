@@ -54,20 +54,35 @@ NimbusTasks
 
         <div class="quest-item">
 
-            <div class="quest-info">
+             <div class="quest-info">
 
                 <span class="quest-icon">📜</span>
 
-                <span class="quest-text">
-                    {{ task.quest }}
+                <span class="quest-text {% if task.completed %}completed{% endif %}">
+                  {{ task.quest }}
                 </span>
-            </div>
-            
-            <a class="delete-btn" href="/delete/{{ task.id }}">🗑️
 
-            </a>
-       
-        </div>
+             </div>
+
+             <div class="quest-actions">
+
+                 <a class="complete-btn" href="/complete/{{ task.id }}">
+
+                     {% if task.completed %}
+                       🔥
+                     {% else %}
+                     🕯️
+                     {% endif %}
+
+                 </a>
+
+                 <a class="delete-btn" href="/delete/{{ task.id }}">
+                      🗑️
+                 </a>
+
+             </div>
+
+         </div>
         
         {% endfor %}
         {% else %}
