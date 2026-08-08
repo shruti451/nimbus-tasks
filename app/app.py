@@ -1,45 +1,67 @@
 
 from flask import Flask, render_template, request, redirect
+import mysql.connector
 
 app = Flask(__name__)
-tasks = []
-next_id = 1
+db = mysql.connector.connect(
+    host="mysql",
+    user="root",
+    password="password",
+    database="nimbusdb"
+)
 
-@app.route("/",  methods=["GET", "POST"])
 
+@app.route("/", methods=["GET", "POST"])
 def home():
-     global next_id
-     if request.method == "POST":
+
+    if request.method == "POST":
 
         quest = request.form["quest"]
 
-        task = {
-    "id": next_id,
-    "quest": quest,
-    "completed": False
-      }
+        cursor = db.cursor()
 
-        tasks.append(task)
+        cursor.execute(
+            "INSERT INTO tasks (quest, completed) VALUES (%s, %s)",
+            (quest, False)
+        )
 
-        next_id += 1
+        db.commit()
+        cursor.close()
 
-     return render_template("index.html", tasks=tasks)
+        return redirect("/")
+
+    cursor = db.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM tasks")
+
+    tasks = cursor.fetchall()
+    cursor.close()
+
+    return render_template("index.html", tasks=tasks)
 
 @app.route("/delete/<int:id>")
 def delete(id):
-    for task in tasks:
-        if task["id"] == id:
-            tasks.remove(task)
-            break
+    cursor = db.cursor()
+
+    cursor.execute(
+        "DELETE FROM tasks WHERE id = %s",
+        (id,)
+    )
+
+    db.commit()
 
     return redirect("/")
 
 @app.route("/complete/<int:id>")
 def complete(id):
-    for task in tasks:
-        if task["id"] == id:
-            task["completed"] = not task["completed"]
-            break
+    cursor = db.cursor()
+
+    cursor.execute(
+        "UPDATE tasks SET completed = NOT completed WHERE id = %s",
+        (id,)
+    )
+
+    db.commit()
 
     return redirect("/")
 
