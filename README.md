@@ -51,33 +51,51 @@ Version 8 ☁️ AWS Migration
 
 ---
 
-## 🏗️ Planned Architecture
+## 🏗️ Current Architecture
 
 Internet
-
-↓
-
+   ↓
 Google Cloud VM
-
-↓
-
-Docker Container
-
-↓
-
-NimbusTasks
+   ↓
+Docker Compose
+   ↓
+┌───────────────┐
+│ Flask         │
+│ Application   │
+└───────┬───────┘
+        │
+   ┌────┴─────┐
+   ↓          ↓
+ MySQL      Redis
+   │          │
+Persistent   Cache
+ Storage
 
 ---
+
+### Redis Caching
+
+Redis is used as a caching layer alongside MySQL.
+
+- Implemented a cache-aside strategy for task retrieval.
+- Flask checks Redis for cached tasks before querying MySQL.
+- On a cache miss, tasks are retrieved from MySQL and stored in Redis.
+- Cache is invalidated when tasks are created, deleted, or updated.
+- MySQL remains the persistent source of truth.
+- Redis runs as a separate container managed by Docker Compose.
 
 ## 📚 Technologies
 
 - Python
 - Flask
-- HTML
-- CSS
-- Jinja2
+- MySQL
+- Redis
+- Docker
+- Docker Compose
+- Linux
 - Git
 - GitHub
+- Google Cloud Platform
 
 ---
 
