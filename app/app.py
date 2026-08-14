@@ -1,6 +1,8 @@
 
 from flask import Flask, render_template, request, redirect
 import mysql.connector
+import redis
+import json
 
 app = Flask(__name__)
 db = mysql.connector.connect(
@@ -9,6 +11,13 @@ db = mysql.connector.connect(
     password="password",
     database="nimbusdb"
 )
+
+redis_client = redis.Redis(
+    host="redis",
+    port=6379,
+    decode_responses=True
+)
+
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -27,15 +36,25 @@ def home():
 
         db.commit()
         cursor.close()
+        redis_client.delete("tasks")
 
         return redirect("/")
 
-    cursor = db.cursor(dictionary=True)
+    cached_tasks = redis_client.get("tasks")
 
-    cursor.execute("SELECT * FROM tasks")
+    if cached_tasks:
+     tasks = json.loads(cached_tasks)
 
-    tasks = cursor.fetchall()
-    cursor.close()
+    else:
+     cursor = db.cursor(dictionary=True)
+
+     cursor.execute("SELECT * FROM tasks")
+
+     tasks = cursor.fetchall()
+
+     cursor.close()
+
+     redis_client.set("tasks", json.dumps(tasks))
 
     return render_template("index.html", tasks=tasks)
 
@@ -49,6 +68,8 @@ def delete(id):
     )
 
     db.commit()
+    cursor.close()
+    redis_client.delete("tasks")
 
     return redirect("/")
 
@@ -62,6 +83,8 @@ def complete(id):
     )
 
     db.commit()
+    cursor.close()
+    redis_client.delete("tasks")
 
     return redirect("/")
 

@@ -27,5 +27,9 @@ services:
     ports:
       - "3307:3306"
 
+  redis:
+    image: redis:7-alpine
+    container_name: nimbus-redis
+
 volumes:
   mysql_data:
