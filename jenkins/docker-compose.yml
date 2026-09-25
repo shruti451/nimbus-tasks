@@ -1,7 +1,7 @@
 services:
 
   jenkins:
-    image: jenkins/jenkins:lts-jdk21
+    build: .
     container_name: nimbus-jenkins
     ports:
       - "8081:8080"

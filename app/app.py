@@ -5,18 +5,24 @@ import redis
 import json
 
 app = Flask(__name__)
-db = mysql.connector.connect(
-    host="mysql",
-    user="root",
-    password="password",
-    database="nimbusdb"
-)
+db = None
+redis_client = None
 
-redis_client = redis.Redis(
-    host="redis",
-    port=6379,
-    decode_responses=True
-)
+def connect_services():
+    global db, redis_client
+
+    db = mysql.connector.connect(
+        host="mysql",
+        user="root",
+        password="password",
+        database="nimbusdb"
+    )
+
+    redis_client = redis.Redis(
+        host="redis",
+        port=6379,
+        decode_responses=True
+    )
 
 
 
@@ -89,4 +95,5 @@ def complete(id):
     return redirect("/")
 
 if __name__ == "__main__":
+    connect_services()
     app.run(host="0.0.0.0", port=5000, debug=False)
