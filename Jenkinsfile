@@ -11,6 +11,7 @@ pipeline {
 
         stage('Test') {
              steps {
+                sh 'pip3 install -r app/requirements.txt'
                 sh 'pytest'
             }
         }
