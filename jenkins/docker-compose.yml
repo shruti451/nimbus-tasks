@@ -5,9 +5,11 @@ services:
     container_name: nimbus-jenkins
     ports:
       - "8081:8080"
-    
+    group_add:
+      - "0"
     volumes:
       - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   jenkins_home:

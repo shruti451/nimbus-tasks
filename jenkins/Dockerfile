@@ -1,11 +1,19 @@
+
+FROM docker:28.5.1-cli AS docker-cli
+
 FROM jenkins/jenkins:lts-jdk21
 
 USER root
 
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip python3-venv && \
+    apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-venv && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install pytest --break-system-packages
+
+COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
 
 USER jenkins
