@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Building NimbusTasks...'
+                sh 'docker build -t nimbus-tasks:latest .'
             }
         }
     }
