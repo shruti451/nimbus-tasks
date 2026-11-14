@@ -118,6 +118,7 @@ Redis is used as a caching layer alongside MySQL.
 
 <img src="images/quest-board.png" width="900">
 
+
 ## 📌 Status
 
-🚧 Currently under development.
+🚧 Currently under development
