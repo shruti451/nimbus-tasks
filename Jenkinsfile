@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Test') {
             steps {
                 sh '''
@@ -17,11 +11,20 @@ pipeline {
                     ./venv/bin/pytest
                 '''
             }
-}
+        }
 
         stage('Build') {
             steps {
                 sh 'docker build -t nimbus-tasks:latest .'
+            }
+        }
+
+        stage('Verify Image') {
+            steps {
+                sh '''
+                    docker image inspect nimbus-tasks:latest > /dev/null
+                    echo "NimbusTasks image verified successfully!"
+                '''
             }
         }
     }
