@@ -108,6 +108,58 @@ Redis is used as a caching layer alongside MySQL.
 
 ---
 
+## CI/CD Pipeline with Jenkins
+
+NimbusTasks uses Jenkins to automate testing and Docker image creation through a Continuous Integration (CI) pipeline.
+
+### Pipeline Workflow
+
+The pipeline follows this sequence:
+
+1. **Source Code Checkout:** Jenkins automatically checks out the latest code from the GitHub repository.
+2. **Automated Testing:** Creates a Python virtual environment, installs project dependencies, and executes tests using pytest.
+3. **Docker Image Build:** Builds the NimbusTasks Docker image and tags it as `nimbus-tasks:latest`.
+4. **Image Verification:** Verifies that the Docker image has been successfully created using Docker image inspection.
+
+### Pipeline Automation
+
+- Integrated GitHub with Jenkins using a webhook.
+- Configured Jenkins to trigger a pipeline automatically whenever code is pushed to the repository.
+- Used Docker CLI inside the Jenkins container to build images through the Docker Engine.
+- Configured a Docker volume to persist Jenkins data.
+
+### Pipeline Tools
+
+- Jenkins
+- GitHub Webhooks
+- Docker
+- Python
+- pytest
+- Git
+
+### Pipeline Result
+
+The pipeline completes successfully when all stages pass:
+
+- Tests execute successfully.
+- Docker image is built.
+- Image verification succeeds.
+
+**Note:** This pipeline currently focuses on Continuous Integration and Docker image building. Automated deployment is planned for a later phase.
+
+### Docker Build Optimization
+
+Added a `.dockerignore` file to exclude unnecessary files and directories from the Docker build context, including:
+
+- Git metadata
+- Python virtual environments
+- Python cache files
+- pytest cache
+- Environment files
+- Jenkins data
+
+This reduced the Docker build context from approximately 102.9 MB to 6.26 KB, making the build process more efficient.
+
 ## 📸 Screenshots
 
 ### Home Page
